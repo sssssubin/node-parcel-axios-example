@@ -7,20 +7,20 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <script defer src="../src/main.js"></script>
+    <!-- Google Maps API 로드 -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCALKKgBU3ikP4M4RIy2-vj9Y1013tabHg&callback=initMap"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCALKKgBU3ikP4M4RIy2-vj9Y1013tabHg"
       async
       defer
     ></script>
     <script>
       let map;
 
-      // Google Maps API가 로드된 후 호출되는 함수
+      // 초기화 함수 정의
       function initMap() {
-        // 지도 초기화
         map = new google.maps.Map(document.getElementById("map"), {
           zoom: 13,
-          center: { lat: 37.5665, lng: 126.978 },
+          center: { lat: 37.5665, lng: 126.978 }, // 초기 중심 위치 설정
           mapTypeId: google.maps.MapTypeId.ROADMAP,
         });
 
@@ -28,7 +28,16 @@
         getData();
       }
 
-      // 데이터 가져오기 및 처리
+      // 페이지 로드 후 initMap 호출
+      window.onload = () => {
+        // 확인용: 스크립트가 로드되었는지 확인
+        if (typeof google !== "undefined" && google.maps) {
+          initMap();
+        } else {
+          console.error("Google Maps API is not loaded");
+        }
+      };
+
       async function getData() {
         try {
           const url = `http://openapi.seoul.go.kr:8088/7554454e4c6273743332415a6f6f7a/json/bikeList/1/5/`;
