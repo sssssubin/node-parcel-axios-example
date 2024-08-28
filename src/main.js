@@ -165,7 +165,7 @@ function getMovies(TITLE = "Charlie and the Chocolate Factory") {
   axios
     .get(`http://www.omdbapi.com/?apikey=${OMDb_API_KEY}&s=${TITLE}`)
     .then((response) => {
-      console.log(response);
+      // console.log(">>>>> response: ", response);
       const results = document.getElementById("results");
       results.innerHTML = ""; // 초기화
 
@@ -173,21 +173,30 @@ function getMovies(TITLE = "Charlie and the Chocolate Factory") {
         const movies = response.data.Search.slice(0, 10);
         movies.forEach((movie) => {
           const movieEl = document.createElement("div");
-          const h1El = document.createElement("h1");
+          const textGroup = document.createElement("div");
+          const imgGroup = document.createElement("div");
+          movieEl.classList.add("card");
+          imgGroup.classList.add("card-img");
+          textGroup.classList.add("card-text");
+
           const imgEl = document.createElement("img");
+          const h6El = document.createElement("h6");
           const yearEl = document.createElement("p");
           const typeEl = document.createElement("p");
-
-          movieEl.classList.add("movie");
-          h1El.textContent = movie.Title;
-          imgEl.src = movie.Poster;
+          imgEl.src =
+            movie.Poster !== "N/A"
+              ? movie.Poster
+              : "https://placehold.co/140x200";
+          h6El.textContent = movie.Title;
           yearEl.textContent = movie.Year;
           typeEl.textContent = movie.Type;
 
-          movieEl.appendChild(h1El);
-          movieEl.appendChild(imgEl);
-          movieEl.appendChild(yearEl);
-          movieEl.appendChild(typeEl);
+          imgGroup.appendChild(imgEl);
+          textGroup.appendChild(h6El);
+          textGroup.appendChild(typeEl);
+          textGroup.appendChild(yearEl);
+          movieEl.appendChild(imgGroup);
+          movieEl.appendChild(textGroup);
           results.appendChild(movieEl);
         });
       } else {
@@ -227,8 +236,7 @@ async function getData() {
     spot.stationLongitude,
     spot.parkingBikeTotCnt,
   ]);
-  console.log(data);
-  console.log("locations: ", locations);
+  // console.log(">>>>> locations: ", locations);
   drawMap(locations);
 }
 getData();

@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>parcel-js-axios-lodash-template</title>
-    <link rel="stylesheet" href="./style.css" />
+    <title>Parcel JS Axios Lodash Template</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <script defer src="../src/main.js"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCALKKgBU3ikP4M4RIy2-vj9Y1013tabHg&callback=initMap"
@@ -13,17 +14,29 @@
     ></script>
   </head>
   <body>
-    <label for="searchInput"><h2>영화 data 가져오기</h2></label>
-    <div class="form-group">
-      <input type="text" id="searchInput" placeholder="" />
-      <button id="schBtn">Search</button>
-    </div>
-    <div id="results"></div>
-    <hr />
-    <h2>google map 연동</h2>
-    <div
-      id="map"
-      style="width: 100%; height: 500px; position: relative; overflow: hidden"
-    ></div>
+    <nav class="navbar">
+      <a href="/" class="navbar__logo">
+        <img src="/logo.png" alt="Logo" class="navbar__logo-img" />
+      </a>
+    </nav>
+    <main class="main-container">
+      <h4>영화 데이터 가져오기</h4>
+      <div class="form-search">
+        <input
+          type="text"
+          id="searchInput"
+          class="form-control"
+          placeholder="찾는 영화 제목을 입력해주세요."
+        />
+        <button id="schBtn" class="btn btn--primary sch-btn">Search</button>
+      </div>
+      <div id="results"></div>
+      <h4>Google Map 연동</h4>
+      <div class="map-wrap">
+        <div class="map-container">
+          <div id="map" class="map"></div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
