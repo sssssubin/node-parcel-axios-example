@@ -12,6 +12,60 @@
       async
       defer
     ></script>
+    <script>
+      let map;
+
+      // Google Maps API가 로드된 후 호출되는 함수
+      function initMap() {
+        // 지도 초기화
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 13,
+          center: { lat: 37.5665, lng: 126.978 },
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+        });
+
+        // 데이터를 가져오고 맵에 표시
+        getData();
+      }
+
+      // 데이터 가져오기 및 처리
+      async function getData() {
+        try {
+          const url = `http://openapi.seoul.go.kr:8088/7554454e4c6273743332415a6f6f7a/json/bikeList/1/5/`;
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const data = await response.json();
+          const locations = data.rentBikeStatus.row.map((spot) => [
+            spot.stationName,
+            spot.stationLatitude,
+            spot.stationLongitude,
+            spot.parkingBikeTotCnt,
+          ]);
+          drawMap(locations);
+        } catch (error) {
+          console.error("There was a problem with the fetch operation:", error);
+        }
+      }
+
+      // 맵에 마커 추가
+      function drawMap(locations) {
+        const infowindow = new google.maps.InfoWindow();
+        locations.forEach((location) => {
+          const marker = new google.maps.Marker({
+            position: new google.maps.LatLng(location[1], location[2]),
+            map: map,
+            title: location[0],
+          });
+
+          marker.addListener("click", () => {
+            infowindow.setContent(location[3]);
+            infowindow.open(map, marker);
+          });
+        });
+      }
+    </script>
   </head>
   <body>
     <nav class="navbar">

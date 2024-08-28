@@ -163,7 +163,7 @@ import axios from "axios";
 const OMDb_API_KEY = "f80dac9e";
 function getMovies(TITLE = "Charlie and the Chocolate Factory") {
   axios
-    .get(`http://www.omdbapi.com/?apikey=${OMDb_API_KEY}&s=${TITLE}`)
+    .get(`https://www.omdbapi.com/?apikey=${OMDb_API_KEY}&s=${TITLE}`)
     .then((response) => {
       // console.log(">>>>> response: ", response);
       const results = document.getElementById("results");
@@ -223,42 +223,3 @@ schBtn.addEventListener("click", () => {
     alert("영화 제목을 입력해주세요");
   }
 });
-
-// google map 연동
-const GOOGLE_MAPS_API_KEY = "7554454e4c6273743332415a6f6f7a";
-async function getData() {
-  const url = `http://openapi.seoul.go.kr:8088/${GOOGLE_MAPS_API_KEY}/json/bikeList/1/5/`;
-  const response = await fetch(url);
-  const data = await response.json();
-  const locations = data.rentBikeStatus.row.map((spot) => [
-    spot.stationName,
-    spot.stationLatitude,
-    spot.stationLongitude,
-    spot.parkingBikeTotCnt,
-  ]);
-  // console.log(">>>>> locations: ", locations);
-  drawMap(locations);
-}
-getData();
-
-function drawMap(locations) {
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 13,
-    center: new google.maps.LatLng(locations[0][1], locations[0][2]),
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-  });
-
-  const infowindow = new google.maps.InfoWindow();
-  locations.forEach((location) => {
-    const marker = new google.maps.Marker({
-      position: new google.maps.LatLng(location[1], location[2]),
-      map: map,
-      title: location[0],
-    });
-
-    marker.addListener("click", () => {
-      infowindow.setContent(location[3]);
-      infowindow.open(map, marker);
-    });
-  });
-}
