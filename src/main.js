@@ -161,7 +161,7 @@ import axios from "axios";
 
 // 영화 data 가져오기
 const OMDb_API_KEY = "f80dac9e";
-function getMovies(TITLE = "Charlie and the Chocolate Factory") {
+function getMovies(TITLE = "inside out") {
   axios
     .get(`https://www.omdbapi.com/?apikey=${OMDb_API_KEY}&s=${TITLE}`)
     .then((response) => {

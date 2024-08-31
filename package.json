@@ -1,5 +1,5 @@
 {
-  "name": "parcel-js-axios-lodash-template",
+  "name": "node-parcel-axios-example",
   "version": "1.0.0",
   "scripts": {
     "dev": "parcel public/index.html",

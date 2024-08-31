@@ -1,11 +1,12 @@
-# parcel-js-axios-lodash-template
+# node-parcel-axios-example
 
-이 프로젝트는 Node.js 환경에서 Parcel, Axios, Lodash를 사용하여 웹 애플리케이션을 개발하기 위한 기본 템플릿입니다. 이 템플릿은 Axios를 활용한 HTTP 요청과 Lodash를 사용한 유틸리티 함수, 그리고 Google Maps API 통합 등의 기본적인 사용법을 보여줍니다.
+이 프로젝트는 Node.js 환경에서 Parcel과 Axios를 활용하여 웹 애플리케이션을 개발하기 위한 기본 템플릿입니다. Parcel을 사용하여 빠르고 간편하게 빌드 및 번들링을 설정하고, Axios를 통해 HTTP 요청을 처리합니다. 또한, Google Maps API를 통합하여 기본적인 API 사용법을 실습할 수 있습니다. Node.js, Parcel, Axios의 기본적인 사용법을 학습하고 실습할 수 있는 예제입니다.
+
 
 ## 프로젝트 구조
 
 ```plaintext
-parcel-js-axios-lodash-template/
+node-parcel-axios-example/
 │
 ├── .cache/               # Parcel bundler의 캐시 파일
 ├── dist/                 # 빌드된 파일이 저장되는 디렉토리

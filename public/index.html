@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Parcel JS Axios Lodash Template</title>
+    <title>node-parcel-axios-example</title>
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="./favicon.png" />
     <script defer src="../src/main.js"></script>
     <!-- Google Maps API 로드 -->
     <script
@@ -62,6 +62,9 @@
       function drawMap(locations) {
         const infowindow = new google.maps.InfoWindow();
         locations.forEach((location) => {
+          console.log(
+            `Adding marker for: ${location[0]} at (${location[1]}, ${location[2]})`
+          );
           const marker = new google.maps.Marker({
             position: new google.maps.LatLng(location[1], location[2]),
             map: map,

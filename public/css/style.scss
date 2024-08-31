@@ -235,8 +235,8 @@ label {
 
 // 지도 스타일
 .map-wrap {
-  flex: 1 1 calc((100% / 3) - (4rem / 3)); // 1열에 3개의 카드
-  max-width: calc((100% / 3) - (4rem / 3));
+  // flex: 1 1 calc((100% / 3) - (4rem / 3)); // 1열에 3개의 카드
+  // max-width: calc((100% / 3) - (4rem / 3));
   padding: 3rem;
   background-color: #fff;
   box-sizing: border-box;
